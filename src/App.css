@@ -2,11 +2,12 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #dc3545;
-  --dark-color: #333333;
-  --light-color: #f4f4f4;
-  --danger-color: #dc3545;
-  --success-color: #28a745;
+  --primary-color: #9dc6d8;
+  --dark-color: #1d4e89;
+  --light-color: #c6cccc;
+  --danger-color: #965251;
+  --success-color: #e38690;
+  --scuba-color: #00b3ca;
 }
 
 * {
@@ -24,7 +25,7 @@ body {
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--dark-color);
   text-decoration: none;
 }
 
@@ -113,6 +114,12 @@ img {
 .card {
   padding: 1rem;
   border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+}
+
+.cardTwo {
+  padding: 1rem;
+  /* border: #ccc 1px dotted; */
   margin: 0.7rem 0;
 }
 
@@ -284,6 +291,13 @@ img {
   background: var(--success-color);
   color: #fff;
 }
+.btn-scuba,
+.bg-scuba,
+.badge-scuba,
+.alert-scuba {
+  background: var(--scuba-color);
+  color: #fff;
+}
 
 .btn-white,
 .bg-white,
@@ -369,7 +383,7 @@ table th {
 }
 
 .navbar a:hover {
-  color: var(--light-color);
+  color: var(--dark-color);
 }
 
 .navbar .welcome span {
