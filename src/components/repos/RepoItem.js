@@ -5,7 +5,7 @@ const RepoItem = ({ repo }) => {
   return (
     <div className='badge badge-primary'>
       <h3>
-        <a href={repo.html_url}>{repo.name}</a>
+        <a href={repo.html_url}> {repo.name} </a>
       </h3>
     </div>
   );
