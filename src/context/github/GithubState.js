@@ -83,6 +83,7 @@ const GithubState = (props) => {
         users: state.users,
         user: state.user,
         repos: state.repos,
+        language: state.language,
         loading: state.loading,
         searchUsers,
         clearUsers,
