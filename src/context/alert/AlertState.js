@@ -1,7 +1,7 @@
-import React, { useReducer } from 'react';
-import AlertContext from './alertContext';
-import AlertReducer from './alertReducer';
-import { SET_ALERT, REMOVE_ALERT } from '../types';
+import React, { useReducer } from "react";
+import AlertContext from "./alertContext";
+import AlertReducer from "./alertReducer";
+import { SET_ALERT, REMOVE_ALERT } from "../types";
 
 const AlertState = (props) => {
   const initialState = null;
@@ -15,7 +15,7 @@ const AlertState = (props) => {
       payload: { msg, type },
     });
 
-    setTimeout(() => dispatch({ type: REMOVE_ALERT }), 4000);
+    setTimeout(() => dispatch({ type: REMOVE_ALERT }), 4000); //Benji: You could have the alert displayed until the user enters text in the search bar instead of a setTimeout
   };
 
   return (

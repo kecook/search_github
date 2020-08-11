@@ -1,19 +1,21 @@
-import React, { useReducer } from 'react';
-import Axios from 'axios';
-import GithubContext from './githubContext';
-import GithubReducer from './githubReducer';
+import React, { useReducer } from "react";
+import Axios from "axios";
+import GithubContext from "./githubContext";
+import GithubReducer from "./githubReducer";
 import {
   SEARCH_USERS,
   SET_LOADING,
   CLEAR_USERS,
   GET_USER,
   GET_REPOS,
-} from '../types';
+  GET_ALL_REPOS,
+} from "../types";
 
 let githubClientId;
 let githubClientSecret;
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
+  //Benji: these are actually coming up as undefined for me but the app still works properly
   githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
   githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
 } else {
@@ -26,6 +28,7 @@ const GithubState = (props) => {
     users: [],
     user: {},
     repos: [],
+    allRepos: [],
     loading: false,
   };
 
@@ -34,7 +37,7 @@ const GithubState = (props) => {
   //search Users
   const searchUsers = async (text) => {
     setLoading();
-
+    console.log("githubClientId", githubClientId);
     const res = await Axios.get(
       `https://api.github.com/search/users?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecret}`
     );
@@ -58,7 +61,7 @@ const GithubState = (props) => {
     });
   };
 
-  //get repos
+  //get last 5 repos
   const getUserRepos = async (username) => {
     setLoading();
 
@@ -69,6 +72,20 @@ const GithubState = (props) => {
       type: GET_REPOS,
       payload: res.data,
     });
+  };
+
+  //get all user repos
+  const getAllUserRepos = async (username) => {
+    setLoading();
+    const allRepos = await Axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=100&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecret}`
+    );
+
+    dispatch({
+      type: GET_ALL_REPOS,
+      payload: allRepos.data, //this is already the array inside allRepos object
+    });
+    console.log("all repos", allRepos);
   };
 
   //clear users
@@ -84,10 +101,12 @@ const GithubState = (props) => {
         user: state.user,
         repos: state.repos,
         loading: state.loading,
+        allRepos: state.allRepos,
         searchUsers,
         clearUsers,
         getUser,
         getUserRepos,
+        getAllUserRepos,
       }}
     >
       {props.children}
