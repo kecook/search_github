@@ -39,7 +39,7 @@ export default (state, action) => {
       //array of objects and we want to count the number of times each value occurs
 
       for (let i = 0; i < allRepos.length; i++) {
-        let objectInsideArray = allRepos[0];
+        let objectInsideArray = allRepos[i];
         let languageOfThisRepo = objectInsideArray.language;
         counts[languageOfThisRepo] = (counts[languageOfThisRepo] || 0) + 1;
       }
