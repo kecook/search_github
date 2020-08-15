@@ -3,19 +3,11 @@ import Spinner from '../layout/Spinner';
 import Repos from '../repos/Repos.js';
 import { Link } from 'react-router-dom';
 import GithubContext from '../../context/github/githubContext';
-import RepoLanguage from '../repos/RepoLanguage';
 
 const User = ({ match }) => {
   const githubContext = useContext(GithubContext);
 
-  const {
-    getUser,
-    loading,
-    user,
-    repos,
-    getUserRepos,
-    repoLanguage,
-  } = githubContext;
+  const { getUser, loading, user, repos, getUserRepos } = githubContext;
   useEffect(() => {
     getUser(match.params.login);
     getUserRepos(match.params.login);
@@ -95,10 +87,6 @@ const User = ({ match }) => {
       <div className='card text-center'>
         <h3>Latest Public Repos:</h3>
         <Repos repos={repos} />
-      </div>
-      <div className='card text-center'>
-        <h3>Languages Used:</h3>
-        <RepoLanguage repoLanguage={repoLanguage}></RepoLanguage>
       </div>
     </Fragment>
   );
