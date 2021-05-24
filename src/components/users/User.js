@@ -7,7 +7,14 @@ import GithubContext from '../../context/github/githubContext';
 const User = ({ match }) => {
   const githubContext = useContext(GithubContext);
 
-  const { getUser, loading, user, repos, getUserRepos } = githubContext;
+  const {
+    getUser,
+    loading,
+    user,
+    repos,
+    getUserRepos,
+    getAllRepos,
+  } = githubContext;
   useEffect(() => {
     getUser(match.params.login);
     getUserRepos(match.params.login);
@@ -87,6 +94,10 @@ const User = ({ match }) => {
       <div className='card text-center'>
         <h3>Latest Public Repos:</h3>
         <Repos repos={repos} />
+      </div>
+      <div className='card text-center'>
+        <h3>Languages used:</h3>
+        {/* <getAllRepos getAllRepos={getAllRepos} /> */}
       </div>
     </Fragment>
   );

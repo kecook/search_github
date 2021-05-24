@@ -8,6 +8,7 @@ import {
   CLEAR_USERS,
   GET_USER,
   GET_REPOS,
+  GET_ALL_REPOS,
 } from '../types';
 
 let githubClientId;
@@ -69,6 +70,20 @@ const GithubState = (props) => {
       type: GET_REPOS,
       payload: res.data,
     });
+  };
+
+  //get all user repos
+  const getAllUserRepos = async (username) => {
+    setLoading();
+    const allRepos = await Axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=100&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecret}`
+    );
+
+    dispatch({
+      type: GET_ALL_REPOS,
+      payload: allRepos.data, //this is already the array inside allRepos object
+    });
+    console.log('all repos', allRepos);
   };
 
   //clear users
