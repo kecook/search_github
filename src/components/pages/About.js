@@ -7,6 +7,7 @@ const About = () => {
       <p> App to search GitHub users</p>
       <p>version 1.0.0</p>
     </Fragment>
+    //making a note
   );
 };
 
